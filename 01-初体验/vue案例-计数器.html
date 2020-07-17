@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app">
+        <h1>当前计数{{count}}</h1>
+        <button v-on:click="add">+</button>
+        <button @click="sub">-</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:"#app",
+            data:{
+                count:0    
+            },
+            methods: {
+                add:function()
+                {
+                    this.count++;
+                },
+                sub:function()
+                {
+                   
+                    if(this.count==0)
+                    {
+                        alert("这是最小值了！！！");
+                    }
+                    else{
+                        this.count--;
+                    }
+                }
+            },
+            //生命周期函数或者hook（钩子）函数
+            beforeCreate() {
+                
+            },
+            created:function() {
+                console.log("created");
+            },
+            mounted:function() {
+                console.log("mounted"); 
+            },
+            destroyed() {
+                cosole.log("destroyed");
+            },
+        })
+    </script>
+</body>
+</html>
