@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+     <cpn :number1="num1" :number2="num2" @numberinput1="numberinput1"  @numberinput2="numberinput2"></cpn>
+</div>
+
+<template id="cpn1">
+    <div>
+        <h2>{{number1}}</h2>
+<!--        <input type="text" v-model="cpnnumber1" >-->
+        <input type="text" :value="cpnnumber1" @input="numberinput1">
+        <h2>{{number2}}</h2>
+<!--        <input type="text" v-model="cpnnumber2" >-->
+        <input type="text" :value="cpnnumber2" @input="numberinput2">
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+   const app = new Vue({
+       el: "#app", //挂载在app元素下,
+       data:{       
+           message:"你好啊",
+           num1:1,
+           num2:0
+       },
+       methods: {
+           numberinput1(number){
+               this.num1=parseInt(number);
+           },
+           numberinput2(number){
+               this.num2=parseInt(number);
+           }
+       },
+       components:{
+           cpn:{
+               template:'#cpn1',
+               props:{
+                   number1:{
+                       type:Number,
+                       default:0,
+                       required:true
+                   },
+                   number2:{
+                       type:Number,
+                       default:0,
+                       required:true
+                   }
+               },
+               data(){
+                  return {
+                      cpnnumber1: this.number1,
+                      cpnnumber2: this.number2
+                  }
+               },
+               methods:{
+                   numberinput1(event){
+                       this.cpnnumber1=event.target.value;
+                       this.$emit('numberinput1',this.cpnnumber1);
+                   },
+                   numberinput2(event){
+                       this.cpnnumber2=event.target.value;
+                       this.$emit('numberinput2',this.cpnnumber2);
+                   }
+               }
+           }
+       }
+   });
+</script>
+</body>
+</html>
