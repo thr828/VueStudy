@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+     <cpn></cpn>
+    <cpn></cpn>  
+    <cpn ref="aaa"></cpn>
+    
+    <button type="button" @click="btnClick">点击</button>
+</div>
+<template id="cpn1">
+    <div>
+       <h2>我是子组件</h2> 
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+   const app = new Vue({
+       el: "#app", //挂载在app元素下,
+       data:{       
+           message:"你好啊"
+       },
+       components:{
+           'cpn':{
+            template:'#cpn1',
+            methods: {
+                showMessage(){
+                    console.log("showMessage");
+
+                }
+            } ,
+            data(){
+                return{
+                    name:'hello'
+                }
+            }   
+           }
+       },
+       methods:{
+           btnClick(){
+               console.log(this.$children);
+               for (let item of this.$children)
+               {
+                   console.log(item.name);
+               }
+               console.log(this.$refs.aaa.name);
+           }
+       }
+   });
+</script>
+</body>
+</html>

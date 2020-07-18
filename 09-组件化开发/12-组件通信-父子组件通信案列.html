@@ -11,10 +11,12 @@
 
 <template id="cpn1">
     <div>
-        <h2>{{number1}}</h2>
+        <h2>props:{{number1}}</h2>
+        <h2>data:{{cpnnumber1}}</h2>
 <!--        <input type="text" v-model="cpnnumber1" >-->
         <input type="text" :value="cpnnumber1" @input="numberinput1">
-        <h2>{{number2}}</h2>
+        <h2>props:{{number2}}</h2>
+        <h2>data:{{cpnnumber2}}</h2>
 <!--        <input type="text" v-model="cpnnumber2" >-->
         <input type="text" :value="cpnnumber2" @input="numberinput2">
     </div>
